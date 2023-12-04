@@ -25,9 +25,12 @@ public class BoardFragment extends Fragment {
         // Instantiate the member variable of class ConnectFourGame
         mGame = new ConnectFourGame();
 
+        // Find the GridLayout
+        mGrid = parentView.findViewById(R.id.board_grid);
+
         if (savedInstanceState == null) {
             // Call method startGame
-            mGame.startGame();
+            startGame();
         } else {
             // Declare local variable, data type String, to store the game state (i.e., gameState)
             String gameState = savedInstanceState.getString(GAME_STATE);
@@ -36,8 +39,7 @@ public class BoardFragment extends Fragment {
             mGame.setState(gameState);
 
             // Call method setDisc
-            // Assuming you have a method setDisc in ConnectFourGame class, replace it with the actual method
-            mGame.setDisc(); // replace with actual method call
+            setDisc();
         }
 
         // Add the same click handler to all grid buttons
@@ -61,7 +63,7 @@ public class BoardFragment extends Fragment {
         mGame.selectDisc(row, col);
 
         // Call method setDisc
-        mGame.setDisc();
+        setDisc();
 
         // If method isGameOver in class ConnectFourGame returns true
         if (mGame.isGameOver()) {
@@ -72,7 +74,7 @@ public class BoardFragment extends Fragment {
             mGame.newGame();
 
             // Call method setDisc
-            mGame.setDisc();
+            setDisc();
         }
     }
 
@@ -85,7 +87,7 @@ public class BoardFragment extends Fragment {
         mGame.newGame();
 
         // Call method setDisc
-        mGame.setDisc();
+        setDisc();
     }
     private void setDisc() {
         // Iterate through the collection mGrid.getChildCount()
